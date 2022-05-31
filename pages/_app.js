@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import Header from "../components/Header";
+
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -7,8 +9,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title>Bengsiswanto Hendrawan</title>
       </Head>
 
+      <Header></Header>
       <Component {...pageProps} />
     </>
   );
