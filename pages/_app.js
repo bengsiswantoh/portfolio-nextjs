@@ -1,20 +1,14 @@
-import Head from "next/head";
-
-import Header from "../components/Header";
-
-import "../styles/globals.css";
+// import "../styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import Layout from "../components/layouts";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <title>Bengsiswanto Hendrawan</title>
-      </Head>
-
-      <Header></Header>
-      <Component {...pageProps} />
-    </>
+    <ChakraProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ChakraProvider>
   );
 }
 
