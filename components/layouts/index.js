@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { Box, Container } from "@chakra-ui/react";
 
+import Navbar from "../navbar";
+
 const Index = ({ children, router }) => (
   <Box as="main" pb={8}>
     <Head>
@@ -9,6 +11,8 @@ const Index = ({ children, router }) => (
       <meta name="author" content="Bengsiswanto Hendrawan" />
       <title>Bengsiswanto Hendrawan</title>
     </Head>
+
+    <Navbar path={router.asPath} />
 
     <Container maxW="container.md" pt={14}>
       {children}
