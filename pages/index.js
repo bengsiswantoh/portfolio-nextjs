@@ -1,8 +1,46 @@
-import { Container, Box, Heading, useColorModeValue } from "@chakra-ui/react";
+import NextLink from "next/link";
+import Image from "next/image";
+import {
+  Container,
+  Box,
+  Heading,
+  List,
+  ListItem,
+  Link,
+  Button,
+  useColorModeValue,
+  chakra,
+} from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { IoMail, IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 
 import Section from "../components/section";
+import Paragraph from "../components/paragraph";
+import { BioSection, BioYear } from "../components/bio";
+
+const ProfileImage = chakra(Image, {
+  shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
+});
 
 export default function Home() {
+  const contacts = [
+    {
+      title: "bengsiswantoh@gmail.com",
+      link: "mailto:bengsiswantoh@gmail.com",
+      icon: <IoMail />,
+    },
+    {
+      title: "bengsiswantoh",
+      link: "https://github.com/bengsiswantoh",
+      icon: <IoLogoGithub />,
+    },
+    {
+      title: "bengsiswantoh",
+      link: "https://www.linkedin.com/in/bengsiswantoh",
+      icon: <IoLogoLinkedin />,
+    },
+  ];
+
   return (
     <Container>
       <Box
@@ -21,7 +59,7 @@ export default function Home() {
           <Heading as="h2" variant="page-title">
             Bengsiswanto Hendrawan
           </Heading>
-          <p>Developer</p>
+          <p>Software Engineer</p>
         </Box>
 
         <Box
@@ -53,9 +91,58 @@ export default function Home() {
 
       <Section delay={0.1}>
         <Heading as="h3" variant="section-title">
+          Contacts
+        </Heading>
+
+        <List>
+          {contacts.map((contact, index) => {
+            return (
+              <ListItem key={index}>
+                <Link href={contact.link} target="_blank">
+                  <Button
+                    variant="ghost"
+                    colorScheme="teal"
+                    leftIcon={contact.icon}
+                  >
+                    {contact.title}
+                  </Button>
+                </Link>
+              </ListItem>
+            );
+          })}
+        </List>
+      </Section>
+
+      <Section delay={0.2}>
+        <Heading as="h3" variant="section-title">
           Work
         </Heading>
-        <p>Paragraph</p>
+
+        <Paragraph>Paragraph</Paragraph>
+
+        <Box align="center" my={4}>
+          <NextLink href="/works" passHref scroll={false}>
+            <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+              My portfolio
+            </Button>
+          </NextLink>
+        </Box>
+      </Section>
+
+      <Section delay={0.2}>
+        <Heading as="h3" variant="section-title">
+          Experience
+        </Heading>
+
+        <BioSection>
+          <BioYear>Aug 2019 - Present</BioYear>
+          PT. Padi Internet, Software Engineer
+        </BioSection>
+
+        <BioSection>
+          <BioYear>Nov 2009 - Jul 2019</BioYear>
+          PT. Dutakom Wibawa Putra, IT-Application Supervisor
+        </BioSection>
       </Section>
     </Container>
   );
