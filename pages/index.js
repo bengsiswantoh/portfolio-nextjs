@@ -1,5 +1,7 @@
 import { Container, Box, Heading, useColorModeValue } from "@chakra-ui/react";
 
+import Section from "../components/section";
+
 export default function Home() {
   return (
     <Container>
@@ -48,6 +50,13 @@ export default function Home() {
           </Box>
         </Box>
       </Box>
+
+      <Section delay={0.1}>
+        <Heading as="h3" variant="section-title">
+          Work
+        </Heading>
+        <p>Paragraph</p>
+      </Section>
     </Container>
   );
 }
