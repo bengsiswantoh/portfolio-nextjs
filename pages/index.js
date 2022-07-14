@@ -12,35 +12,18 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { IoMail, IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 
 import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { BioSection, BioYear } from "../components/bio";
+
+import contacts from "../data/contacts";
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
 });
 
 export default function Home() {
-  const contacts = [
-    {
-      title: "bengsiswantoh@gmail.com",
-      link: "mailto:bengsiswantoh@gmail.com",
-      icon: <IoMail />,
-    },
-    {
-      title: "bengsiswantoh",
-      link: "https://github.com/bengsiswantoh",
-      icon: <IoLogoGithub />,
-    },
-    {
-      title: "bengsiswantoh",
-      link: "https://www.linkedin.com/in/bengsiswantoh",
-      icon: <IoLogoLinkedin />,
-    },
-  ];
-
   return (
     <Container>
       <Box
@@ -98,7 +81,7 @@ export default function Home() {
           {contacts.map((contact, index) => {
             return (
               <ListItem key={index}>
-                <Link href={contact.link} target="_blank">
+                <Link href={contact.url} target="_blank">
                   <Button
                     variant="ghost"
                     colorScheme="teal"
