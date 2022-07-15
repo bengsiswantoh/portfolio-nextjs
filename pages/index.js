@@ -6,6 +6,10 @@ import {
   Heading,
   List,
   ListItem,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
   Link,
   Button,
   useColorModeValue,
@@ -19,6 +23,7 @@ import Article from "../components/layouts/article";
 import { BioSection, BioYear } from "../components/bio";
 
 import contacts from "../data/contacts";
+import experiences from "../data/experiences";
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
@@ -105,13 +110,13 @@ export default function Home() {
 
           <Paragraph>Paragraph</Paragraph>
 
-          <Box align="center" my={4}>
+          {/* <Box align="center" my={4}>
             <NextLink href="/works" passHref scroll={false}>
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
                 My portfolio
               </Button>
             </NextLink>
-          </Box>
+          </Box> */}
         </Section>
 
         <Section delay={0.2}>
@@ -119,15 +124,31 @@ export default function Home() {
             Experience
           </Heading>
 
-          <BioSection>
-            <BioYear>Aug 2019 - Present</BioYear>
-            PT. Padi Internet, Software Engineer
+          <List>
+            {experiences.map((experience, index) => {
+              return (
+                <ListItem key={index}>
+                  <Stat>
+                    <StatLabel>
+                      {experience.start} - {experience.end}
+                    </StatLabel>
+                    <StatNumber>{experience.company}</StatNumber>
+                    <StatHelpText>{experience.title}</StatHelpText>
+                  </Stat>
+                </ListItem>
+              );
+            })}
+          </List>
+
+          {/* <BioSection>
+            <BioYear>2020</BioYear>
+            A
           </BioSection>
 
           <BioSection>
-            <BioYear>Nov 2009 - Jul 2019</BioYear>
-            PT. Dutakom Wibawa Putra, IT-Application Supervisor
-          </BioSection>
+            <BioYear>2000</BioYear>
+            b
+          </BioSection> */}
         </Section>
       </Container>
     </Article>
