@@ -18,6 +18,8 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import Logo from "../logo";
 import ThemeToggleButton from "../theme-toggle-button";
 
+import sections from "../../data/sections";
+
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
   const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
@@ -36,11 +38,6 @@ const LinkItem = ({ href, path, children }) => {
 
 const Navbar = (props) => {
   const { path } = props;
-
-  const items = [
-    { title: "Works", path: "/works" },
-    { title: "Posts", path: "/posts" },
-  ];
 
   return (
     <Box
@@ -74,10 +71,10 @@ const Navbar = (props) => {
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
-          {items.map((item, index) => {
+          {sections.map((section, index) => {
             return (
-              <LinkItem href={item.path} path={path} key={index}>
-                {item.title}
+              <LinkItem href={section.url} path={path} key={index}>
+                {section.title}
               </LinkItem>
             );
           })}
@@ -95,10 +92,10 @@ const Navbar = (props) => {
                 aria-label="Options"
               />
               <MenuList>
-                {items.map((item, index) => {
+                {sections.map((section, index) => {
                   return (
-                    <NextLink href={item.path} passHref key={index}>
-                      <MenuItem as={Link}>{item.title}</MenuItem>
+                    <NextLink href={section.url} passHref key={index}>
+                      <MenuItem as={Link}>{section.title}</MenuItem>
                     </NextLink>
                   );
                 })}
