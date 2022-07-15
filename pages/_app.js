@@ -1,5 +1,5 @@
-// import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import { AnimatePresence } from "framer-motion";
 
 import Layout from "../components/layouts";
 import Fonts from "../components/fonts";
@@ -11,7 +11,17 @@ function MyApp({ Component, pageProps, router }) {
       <Fonts />
 
       <Layout router={router}>
-        <Component {...pageProps} />
+        <AnimatePresence
+          exitBeforeEnter
+          initial={true}
+          onExitComplete={() => {
+            if (typeof window !== "undefined") {
+              window.scrollTo({ top: 0 });
+            }
+          }}
+        >
+          <Component {...pageProps} />
+        </AnimatePresence>
       </Layout>
     </ChakraProvider>
   );
