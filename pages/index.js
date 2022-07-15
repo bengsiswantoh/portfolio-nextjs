@@ -15,13 +15,13 @@ import {
   useColorModeValue,
   chakra,
 } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 
 import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import Article from "../components/layouts/article";
 import { BioSection, BioYear } from "../components/bio";
 
+import about from "../data/about";
 import contacts from "../data/contacts";
 import experiences from "../data/experiences";
 
@@ -32,8 +32,8 @@ const ProfileImage = chakra(Image, {
 export default function Home() {
   return (
     <Article>
-      <Container>
-        <Box
+      <Container pt={12}>
+        {/* <Box
           borderRadius="lg"
           p={3}
           mb={6}
@@ -42,7 +42,7 @@ export default function Home() {
           css={{ backdropFilter: "blur(10px)" }}
         >
           Hello
-        </Box>
+        </Box> */}
 
         <Box display={{ md: "flex" }}>
           <Box flexGrow={1}>
@@ -81,34 +81,10 @@ export default function Home() {
 
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
-            Contacts
+            About
           </Heading>
 
-          <List>
-            {contacts.map((contact, index) => {
-              return (
-                <ListItem key={index}>
-                  <Link href={contact.url} target="_blank">
-                    <Button
-                      variant="ghost"
-                      colorScheme="teal"
-                      leftIcon={contact.icon}
-                    >
-                      {contact.title}
-                    </Button>
-                  </Link>
-                </ListItem>
-              );
-            })}
-          </List>
-        </Section>
-
-        <Section delay={0.2}>
-          <Heading as="h3" variant="section-title">
-            Work
-          </Heading>
-
-          <Paragraph>Paragraph</Paragraph>
+          <Paragraph>{about}</Paragraph>
 
           {/* <Box align="center" my={4}>
             <NextLink href="/works" passHref scroll={false}>
@@ -149,6 +125,30 @@ export default function Home() {
             <BioYear>2000</BioYear>
             b
           </BioSection> */}
+        </Section>
+
+        <Section delay={0.3}>
+          <Heading as="h3" variant="section-title">
+            Contacts
+          </Heading>
+
+          <List>
+            {contacts.map((contact, index) => {
+              return (
+                <ListItem key={index}>
+                  <Link href={contact.url} target="_blank">
+                    <Button
+                      variant="ghost"
+                      colorScheme="teal"
+                      leftIcon={contact.icon}
+                    >
+                      {contact.title}
+                    </Button>
+                  </Link>
+                </ListItem>
+              );
+            })}
+          </List>
         </Section>
       </Container>
     </Article>
