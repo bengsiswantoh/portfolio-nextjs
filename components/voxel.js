@@ -4,7 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { loadGLTFModel } from "../lib/model";
 
-import { VoxelSpinner, VoxelContainer } from "./voxel-loader";
+import { VoxelSpinner, VoxelContainer } from "./VoxelLoader";
 
 function easeOutCirc(x) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));

@@ -16,10 +16,10 @@ import {
   chakra,
 } from "@chakra-ui/react";
 
-import Section from "../components/section";
-import Paragraph from "../components/paragraph";
-import Article from "../components/layouts/article";
-import { BioSection, BioYear } from "../components/bio";
+import Section from "../components/Section";
+import Paragraph from "../components/Paragraph";
+import Article from "../components/Article";
+import { BioSection, BioYear } from "../components/Bio";
 
 import about from "../data/about";
 import contacts from "../data/contacts";

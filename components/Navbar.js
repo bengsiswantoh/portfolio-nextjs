@@ -15,10 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-import Logo from "../logo";
-import ThemeToggleButton from "../theme-toggle-button";
+import Logo from "./Logo";
+import ThemeToggleButton from "./ThemeToggleButton";
 
-import sections from "../../data/sections";
+import sections from "../data/sections";
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;

@@ -1,8 +1,8 @@
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
-import Layout from "../components/layouts/article";
-import Section from "../components/section";
-import { GridItem } from "../components/grid-item";
+import Layout from "../components/Article";
+import Section from "../components/Section";
+import { GridItem } from "../components/GridItem";
 
 // import thumbPortfolio from "../public/images/contents/youtube-how-to-build-portfolio.jpg";
 // import thumbHowToUseInkdrop from "../public/images/contents/youtube-how-to-use-inkdrop.jpg";
@@ -79,4 +79,4 @@ const Posts = () => (
 );
 
 export default Posts;
-// export { getServerSideProps } from "../components/chakra";
+// export { getServerSideProps } from "../components/Chakra";

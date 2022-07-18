@@ -28,7 +28,7 @@ export const VoxelContainer = forwardRef(({ children }, ref) => (
 ));
 VoxelContainer.displayName = "VoxelContainer";
 
-const Loader = () => {
+const VoxelLoader = () => {
   return (
     <VoxelContainer>
       <VoxelSpinner />
@@ -36,4 +36,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default VoxelLoader;

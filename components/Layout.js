@@ -2,7 +2,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Box, Container } from "@chakra-ui/react";
 
-import Navbar from "../navbar";
+import Navbar from "./Navbar";
 // import VoxelLoader from "../voxel-loader";
 
 // const LazyVoxel = dynamic(() => import("../voxel-dog"), {
@@ -10,7 +10,7 @@ import Navbar from "../navbar";
 //   loading: () => <VoxelDogLoader />,
 // });
 
-const Index = ({ children, router }) => (
+const Layout = ({ children, router }) => (
   <Box as="main" pb={8}>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,4 +29,4 @@ const Index = ({ children, router }) => (
   </Box>
 );
 
-export default Index;
+export default Layout;
