@@ -1,12 +1,9 @@
 const personalProjects = [
   {
-    name: "Discord Notification - Get information and notify me via Discord",
-    tools: ["Github Action", "Node JS"],
+    name: "Discord Notification - Get information and notify via Discord",
+    url: "https://github.com/bengsiswantoh/discord-balzpher-bot",
   },
-  {
-    name: "Discord Notification - Get information and notify me via Discord",
-    tools: ["Github Action", "Node JS"],
-  },
+  // { name: "Look At", url: "https://github.com/bengsiswantoh/look-at" },
 ];
 
 export default personalProjects;
