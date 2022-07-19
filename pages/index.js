@@ -6,10 +6,6 @@ import {
   Heading,
   List,
   ListItem,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
   Link,
   Button,
   useColorModeValue,
@@ -19,6 +15,7 @@ import {
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
 import Article from "../components/Article";
+import ExperienceList from "../components/ExperienceList";
 import { BioSection, BioYear } from "../components/Bio";
 
 import about from "../data/about";
@@ -100,7 +97,9 @@ export default function Home() {
             Experience
           </Heading>
 
-          <List>
+          <ExperienceList experiences={experiences} />
+
+          {/* <List>
             {experiences.map((experience, index) => {
               return (
                 <ListItem key={index}>
@@ -114,7 +113,7 @@ export default function Home() {
                 </ListItem>
               );
             })}
-          </List>
+          </List> */}
 
           {/* <BioSection>
             <BioYear>2020</BioYear>
