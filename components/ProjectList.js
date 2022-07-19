@@ -1,17 +1,9 @@
-import { UnorderedList, ListItem, Badge } from "@chakra-ui/react";
+import { OrderedList, ListItem } from "@chakra-ui/react";
 
-const Tools = ({ tools }) => (
-  <>
-    {tools.map((tool, index) => (
-      <Badge key={index} mx={1}>
-        {tool}
-      </Badge>
-    ))}
-  </>
-);
+import Tools from "./Tools";
 
 const ProjectList = ({ projects }) => (
-  <UnorderedList>
+  <OrderedList>
     {projects.map((project, index) => (
       <ListItem key={index}>
         <p>{project.name}</p>
@@ -20,7 +12,7 @@ const ProjectList = ({ projects }) => (
         </p>
       </ListItem>
     ))}
-  </UnorderedList>
+  </OrderedList>
 );
 
 export default ProjectList;

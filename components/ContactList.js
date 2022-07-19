@@ -6,7 +6,7 @@ const ContactList = ({ contacts }) => (
       <ListItem key={index}>
         <Link href={contact.url} target="_blank">
           <Button variant="ghost" colorScheme="teal" leftIcon={contact.icon}>
-            {contact.title}
+            {contact.name}
           </Button>
         </Link>
       </ListItem>

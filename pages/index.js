@@ -13,11 +13,14 @@ import Paragraph from "../components/Paragraph";
 import Article from "../components/Article";
 import ExperienceList from "../components/ExperienceList";
 import ContactList from "../components/ContactList";
+import ItemList from "../components/ItemList";
 import { BioSection, BioYear } from "../components/Bio";
 
 import about from "../data/about";
 import contacts from "../data/contacts";
 import experiences from "../data/experiences";
+import personalProjects from "../data/personalProjects";
+import certifications from "../data/certifications";
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
@@ -108,6 +111,22 @@ export default function Home() {
         </Section>
 
         <Section delay={0.3}>
+          <Heading as="h3" variant="section-title">
+            Personal Projects
+          </Heading>
+
+          <ItemList items={personalProjects} />
+        </Section>
+
+        <Section delay={0.4}>
+          <Heading as="h3" variant="section-title">
+            Certifications
+          </Heading>
+
+          <ItemList items={certifications} />
+        </Section>
+
+        <Section delay={0.5}>
           <Heading as="h3" variant="section-title">
             Contacts
           </Heading>
