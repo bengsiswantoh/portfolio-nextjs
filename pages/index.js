@@ -4,10 +4,6 @@ import {
   Container,
   Box,
   Heading,
-  List,
-  ListItem,
-  Link,
-  Button,
   useColorModeValue,
   chakra,
 } from "@chakra-ui/react";
@@ -16,6 +12,7 @@ import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
 import Article from "../components/Article";
 import ExperienceList from "../components/ExperienceList";
+import ContactList from "../components/ContactList";
 import { BioSection, BioYear } from "../components/Bio";
 
 import about from "../data/about";
@@ -94,26 +91,10 @@ export default function Home() {
 
         <Section delay={0.2}>
           <Heading as="h3" variant="section-title">
-            Experience
+            Experiences
           </Heading>
 
           <ExperienceList experiences={experiences} />
-
-          {/* <List>
-            {experiences.map((experience, index) => {
-              return (
-                <ListItem key={index}>
-                  <Stat>
-                    <StatLabel>
-                      {experience.start} - {experience.end}
-                    </StatLabel>
-                    <StatNumber>{experience.company}</StatNumber>
-                    <StatHelpText>{experience.title}</StatHelpText>
-                  </Stat>
-                </ListItem>
-              );
-            })}
-          </List> */}
 
           {/* <BioSection>
             <BioYear>2020</BioYear>
@@ -131,23 +112,7 @@ export default function Home() {
             Contacts
           </Heading>
 
-          <List>
-            {contacts.map((contact, index) => {
-              return (
-                <ListItem key={index}>
-                  <Link href={contact.url} target="_blank">
-                    <Button
-                      variant="ghost"
-                      colorScheme="teal"
-                      leftIcon={contact.icon}
-                    >
-                      {contact.title}
-                    </Button>
-                  </Link>
-                </ListItem>
-              );
-            })}
-          </List>
+          <ContactList contacts={contacts} />
         </Section>
       </Container>
     </Article>
