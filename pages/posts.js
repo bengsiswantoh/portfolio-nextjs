@@ -1,6 +1,6 @@
 import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 
-import Layout from "../components/Article";
+import Article from "../components/Article";
 import Section from "../components/Section";
 import { GridItem } from "../components/GridItem";
 
@@ -14,7 +14,7 @@ import { GridItem } from "../components/GridItem";
 // import thumb50xFaster from "../public/images/contents/youtube-50x-faster.jpg";
 
 const Posts = () => (
-  <Layout title="Posts">
+  <Article title="Posts">
     <Container>
       <Heading as="h3" fontSize={20} mb={4}>
         Popular Posts
@@ -75,7 +75,7 @@ const Posts = () => (
         </SimpleGrid>
       </Section>
     </Container>
-  </Layout>
+  </Article>
 );
 
 export default Posts;
