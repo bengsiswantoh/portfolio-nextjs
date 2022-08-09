@@ -10,8 +10,6 @@ export default class Character extends Phaser.GameObjects.Sprite {
   constructor(baseKey, scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    this.scale = 3;
-
     scene.add.existing(this);
 
     scene.physics.add.existing(this);
@@ -35,7 +33,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
     );
     console.log(distance);
 
-    if (distance <= 35) {
+    if (distance <= 12) {
       this.body.velocity.set(0, 0);
     }
 

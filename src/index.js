@@ -2,11 +2,22 @@ import * as Phaser from "phaser";
 
 import MainScene from "./MainScene";
 
+const parent = "game";
+const div = document.getElementById(parent);
+const zoom = 3;
+const width = div.clientWidth / zoom;
+
+console.log(width);
+// console.log("clientWidth", div.clientWidth);
+// console.log("offsetWidth", div.offsetWidth);
+// console.log("width", getComputedStyle(div).width);
+
 const config = {
-  parent: "game",
+  parent,
+  zoom,
+  width,
+  height: width,
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
   scene: [MainScene],
   physics: {
     default: "arcade",
