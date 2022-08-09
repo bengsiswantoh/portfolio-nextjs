@@ -31,7 +31,6 @@ export default class Character extends Phaser.GameObjects.Sprite {
       this.target.x,
       this.target.y
     );
-    console.log(distance);
 
     if (distance <= 4) {
       this.body.velocity.set(0, 0);

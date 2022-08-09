@@ -1,23 +1,23 @@
 import * as Phaser from "phaser";
 
-var progressBar;
-var progressBox;
-var loadingText;
-var percentText;
-var assetText;
+let progressBar;
+let progressBox;
+let loadingText;
+let percentText;
+let assetText;
 
-var progress = (value) => {
+const progress = (value) => {
   percentText.setText(parseInt(value * 100) + "%");
   progressBar.clear();
   progressBar.fillStyle(0xffffff, 1);
   progressBar.fillRect(250, 280, 300 * value, 30);
 };
 
-var fileProgress = (file) => {
+const fileProgress = (file) => {
   assetText.setText("Loading asset: " + file.key);
 };
 
-var complete = () => {
+const complete = () => {
   progressBar.destroy();
   progressBox.destroy();
   loadingText.destroy();
@@ -95,6 +95,9 @@ export default class MainScene extends Phaser.Scene {
 
     const images = [
       { key: "TilesetFloor", src: "/tilemaps/tiles/TilesetFloor.png" },
+
+      { key: "scroll-empty", src: "/sprites/scrolls/ScrollEmpty.png" },
+      { key: "scroll-fire", src: "/sprites/scrolls/ScrollFire.png" },
     ];
     const maps = [{ key: "map-main", src: "/tilemaps/maps/main.json" }];
     const spriteSheets = [

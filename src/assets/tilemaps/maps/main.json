@@ -36,19 +36,31 @@
         {
          "draworder":"topdown",
          "id":2,
-         "name":"objects",
+         "name":"scrolls",
          "objects":[
                 {
                  "class":"",
                  "gid":178,
                  "height":16,
                  "id":1,
-                 "name":"",
+                 "name":"about",
                  "rotation":0,
                  "visible":true,
                  "width":16,
                  "x":64,
                  "y":48
+                }, 
+                {
+                 "class":"",
+                 "gid":178,
+                 "height":16,
+                 "id":3,
+                 "name":"experiences",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -57,7 +69,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":3,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
