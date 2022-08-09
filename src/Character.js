@@ -99,8 +99,9 @@ export default class Character extends Phaser.GameObjects.Sprite {
       }
     }
 
-    this.state = "walk";
-    if (this.body.speed === 0) {
+    if (this.body.speed !== 0) {
+      this.state = "walk";
+    } else {
       this.state = "idle";
     }
 
