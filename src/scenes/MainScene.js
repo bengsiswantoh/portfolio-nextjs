@@ -16,7 +16,9 @@ export default class MainScene extends Phaser.Scene {
   create() {
     const map = this.make.tilemap({ key: "map-main" });
     const tileFloor = map.addTilesetImage("TilesetFloor", "TilesetFloor");
+    const tileHouse = map.addTilesetImage("TilesetHouse", "TilesetHouse");
     map.createLayer("ground", tileFloor);
+    map.createLayer("bottom", tileHouse);
 
     map.getObjectLayer("scrolls").objects.forEach((scroll) => {
       console.log(scroll.name);
@@ -24,7 +26,7 @@ export default class MainScene extends Phaser.Scene {
 
     this.character = new Character("blue-ninja", this, 0, 0);
 
-    this.scroll = new Scroll("scroll", this, 100, 100);
+    this.scroll = new Scroll("scroll", this, 104, 112);
 
     // this.input.mouse.disableContextMenu();
   }
