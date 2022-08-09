@@ -1,6 +1,7 @@
 import * as Phaser from "phaser";
 
-import MainScene from "./MainScene";
+import LoadingScene from "./scenes/LoadingScene";
+import MainScene from "./scenes/MainScene";
 
 const parent = "game";
 const div = document.getElementById(parent);
@@ -18,7 +19,7 @@ const config = {
   width,
   height: width,
   type: Phaser.AUTO,
-  scene: [MainScene],
+  scene: [LoadingScene, MainScene],
   physics: {
     default: "arcade",
     arcade: {
