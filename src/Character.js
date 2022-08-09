@@ -26,14 +26,14 @@ export default class Character extends Phaser.GameObjects.Sprite {
 
   update() {
     const distance = Phaser.Math.Distance.Between(
-      this.body.x,
-      this.body.y,
+      this.body.center.x,
+      this.body.center.y,
       this.target.x,
       this.target.y
     );
     console.log(distance);
 
-    if (distance <= 12) {
+    if (distance <= 4) {
       this.body.velocity.set(0, 0);
     }
 

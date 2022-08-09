@@ -35,7 +35,7 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     // this.add.image(400, 300, "blue-ninja-dead");
-    this.character = new Character("blue-ninja", this, 100, 100);
+    this.character = new Character("blue-ninja", this, 0, 0);
 
     // this.input.mouse.disableContextMenu();
   }
