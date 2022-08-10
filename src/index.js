@@ -4,20 +4,27 @@ import LoadingScene from "./scenes/LoadingScene";
 import MainScene from "./scenes/MainScene";
 
 const parent = "game";
-const div = document.getElementById(parent);
-const zoom = 3;
-const width = div.clientWidth / zoom;
 
-console.log(width);
+const getWidth = () => {
+  const div = document.getElementById(parent);
+  const width = div.clientWidth;
+  return [width, window.innerHeight];
+};
+
+const [width, height] = getWidth();
+
+// console.log(width);
 // console.log("clientWidth", div.clientWidth);
 // console.log("offsetWidth", div.offsetWidth);
 // console.log("width", getComputedStyle(div).width);
 
 const config = {
   parent,
-  zoom,
-  width,
-  height: width,
+  scale: {
+    mode: Phaser.Scale.ScaleModes.NONE,
+    width,
+    height,
+  },
   type: Phaser.AUTO,
   scene: [LoadingScene, MainScene],
   physics: {
@@ -28,5 +35,26 @@ const config = {
     },
   },
 };
+
+window.sizeChanged = () => {
+  if (window.game.isBooted) {
+    setTimeout(() => {
+      const [width, height] = getWidth();
+
+      window.game.scale.resize(width, height);
+      window.game.canvas.setAttribute(
+        "style",
+        `display: block; width: ${width}px; height: ${height}px;`
+      );
+
+      // window.game.scale.resize(window.innerWidth, window.innerHeight);
+      // window.game.canvas.setAttribute(
+      //   "style",
+      //   `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`
+      // );
+    }, 100);
+  }
+};
+window.onresize = () => window.sizeChanged();
 
 window.game = new Phaser.Game(config);
