@@ -28,12 +28,7 @@ export default class Actor extends Phaser.GameObjects.Sprite {
         const key = `${name}-${direction}`;
         const imageKey = `${baseKey}-${name}`;
 
-        let frames = [];
-        let frameIndex = directionIndex;
-        for (let index = 0; index < frameCount; index++) {
-          frames.push(frameIndex);
-          frameIndex += frameMargin;
-        }
+        const frames = createFrames(directionIndex, frameCount, frameMargin);
 
         animations.push({ key, imageKey, frames, frameRate, repeat });
       }
