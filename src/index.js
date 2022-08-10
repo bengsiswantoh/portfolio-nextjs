@@ -1,7 +1,7 @@
 import * as Phaser from "phaser";
 
 import LoadingScene from "./scenes/LoadingScene";
-import MainScene from "./scenes/MainScene";
+import MapScene from "./scenes/MapScene";
 import UIScene from "./scenes/UIScene";
 
 const parent = "game";
@@ -27,7 +27,6 @@ const config = {
     height,
   },
   type: Phaser.AUTO,
-  scene: [LoadingScene, MainScene, UIScene],
   physics: {
     default: "arcade",
     arcade: {
@@ -35,6 +34,21 @@ const config = {
       debug: true,
     },
   },
+  render: {
+    antialiasGL: false,
+    pixelArt: true,
+  },
+  allbacks: {
+    postBoot: () => {
+      window.sizeChanged();
+    },
+  },
+  canvasStyle: `display: block; width: 100%; height: 100%;`,
+  autoFocus: true,
+  audio: {
+    disableWebAudio: false,
+  },
+  scene: [LoadingScene, MapScene, UIScene],
 };
 
 window.sizeChanged = () => {
