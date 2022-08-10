@@ -1,5 +1,3 @@
-import * as Phaser from "phaser";
-
 import Actor from "../base/Actor";
 
 export default class Scroll extends Actor {

@@ -18,7 +18,11 @@ export default class Character extends Actor {
     this.body.setSize(16, 16);
     this.body.setOffset(0, 0);
 
-    this.initAnimations(baseKey);
+    const states = [
+      { name: "idle", frameCount: 1, frameMargin: 1, frameRate: 8, repeat: 0 },
+      { name: "walk", frameCount: 4, frameMargin: 4, frameRate: 8, repeat: -1 },
+    ];
+    this.initAnimationsWithDirection(baseKey, states);
 
     this.anims.play(`${this.state}-${this.facing}`);
     // this.target.set(this.body.center.x, this.body.center.y);
@@ -37,45 +41,45 @@ export default class Character extends Actor {
     // this.playAnimation();
   }
 
-  initAnimations(baseKey) {
-    const animations = [];
+  // initAnimations(baseKey) {
+  //   const animations = [];
 
-    const states = [
-      { name: "idle", frameCount: 1, frameRate: 8, repeat: 0 },
-      { name: "walk", frameCount: 4, frameRate: 8, repeat: -1 },
-    ];
-    this.state = states[0].name;
+  //   const states = [
+  //     { name: "idle", frameCount: 1, frameRate: 8, repeat: 0 },
+  //     { name: "walk", frameCount: 4, frameRate: 8, repeat: -1 },
+  //   ];
+  //   this.state = states[0].name;
 
-    const directions = ["down", "up", "left", "right"];
-    this.facing = directions[0];
+  //   const directions = ["down", "up", "left", "right"];
+  //   this.facing = directions[0];
 
-    for (const state of states) {
-      for (const [directionIndex, direction] of directions.entries()) {
-        const { name, frameCount, frameRate, repeat } = state;
-        const key = `${name}-${direction}`;
-        const imageKey = `${baseKey}-${name}`;
+  //   for (const state of states) {
+  //     for (const [directionIndex, direction] of directions.entries()) {
+  //       const { name, frameCount, frameRate, repeat } = state;
+  //       const key = `${name}-${direction}`;
+  //       const imageKey = `${baseKey}-${name}`;
 
-        let frames = [];
-        let frameIndex = directionIndex;
-        for (let index = 0; index < frameCount; index++) {
-          frames.push(frameIndex);
-          frameIndex += frameCount;
-        }
+  //       let frames = [];
+  //       let frameIndex = directionIndex;
+  //       for (let index = 0; index < frameCount; index++) {
+  //         frames.push(frameIndex);
+  //         frameIndex += frameCount;
+  //       }
 
-        animations.push({ key, imageKey, frames, frameRate, repeat });
-      }
-    }
+  //       animations.push({ key, imageKey, frames, frameRate, repeat });
+  //     }
+  //   }
 
-    for (const animation of animations) {
-      const { key, frames, frameRate, repeat, imageKey } = animation;
-      this.anims.create({
-        key,
-        frames: this.anims.generateFrameNumbers(imageKey, { frames }),
-        frameRate,
-        repeat,
-      });
-    }
-  }
+  //   for (const animation of animations) {
+  //     const { key, frames, frameRate, repeat, imageKey } = animation;
+  //     this.anims.create({
+  //       key,
+  //       frames: this.anims.generateFrameNumbers(imageKey, { frames }),
+  //       frameRate,
+  //       repeat,
+  //     });
+  //   }
+  // }
 
   playAnimation() {
     // if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {

@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 
 import Character from "../classes/Character";
 import Scroll from "../classes/Scroll";
+import MillPropeller from "../classes/MillPropeller";
 
 const scrollClick = (scroll) => {
   console.log(scroll.name);
@@ -11,6 +12,7 @@ const scrollClick = (scroll) => {
 export default class MapScene extends Phaser.Scene {
   character;
   scrolls;
+  millPropellers;
 
   cursors;
 
@@ -54,23 +56,26 @@ export default class MapScene extends Phaser.Scene {
 
     const tileFloor = map.addTilesetImage("TilesetFloor", "TilesetFloor");
     const tileHouse = map.addTilesetImage("TilesetHouse", "TilesetHouse");
-    map.createLayer("ground", tileFloor);
-    map.createLayer("bottom", tileHouse);
+    map.createLayer("floor", tileFloor);
+    map.createLayer("house", tileHouse);
 
     this.scrolls = this.add.group();
-    map.getObjectLayer("scrolls").objects.forEach((scroll) => {
-      const { x, y, name } = scroll;
-      const scrollSprite = new Scroll(scrollClick, name, this, x, y);
-      // scrollSprite.on("pointerdown", (pointer) => {
-      //   // this.setTint(0xff0000);
-      //   scrollClick(this.scrolls.getChildren());
-      // });
-      // scrollSprite.on("pointerup", (pointer) => {});
-      this.scrolls.add(scrollSprite);
+    map.getObjectLayer("scrolls").objects.forEach((item) => {
+      const { x, y, name } = item;
+      const itemSprite = new Scroll(scrollClick, name, this, x, y);
+      this.scrolls.add(itemSprite);
     });
 
-    map.getObjectLayer("player").objects.forEach((scroll) => {
-      const { x, y, name } = scroll;
+    this.millPropellers = this.add.group();
+    map.getObjectLayer("mill-propellers").objects.forEach((item) => {
+      const { x, y } = item;
+      const itemSprite = new MillPropeller(this, x, y);
+      this.millPropellers.add(itemSprite);
+    });
+    // new MillPropeller(this, 728, 376);
+
+    map.getObjectLayer("player").objects.forEach((item) => {
+      const { x, y } = item;
       this.character = new Character("blue-ninja", this, x, y);
     });
   }

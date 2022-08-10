@@ -109,9 +109,6 @@ export default class MainScene extends Phaser.Scene {
   loadAssets() {
     this.load.baseURL = "assets/";
 
-    const frameHeight = 16;
-    const frameWidth = 16;
-
     const images = [
       { key: "TilesetFloor", src: "/tilemaps/tiles/TilesetFloor.png" },
       { key: "TilesetHouse", src: "/tilemaps/tiles/TilesetHouse.png" },
@@ -121,8 +118,25 @@ export default class MainScene extends Phaser.Scene {
     ];
 
     const spriteSheets = [
-      { key: "blue-ninja-idle", src: "./spritesheets/blue-ninja/Idle.png" },
-      { key: "blue-ninja-walk", src: "./spritesheets/blue-ninja/Walk.png" },
+      {
+        key: "blue-ninja-idle",
+        src: "./spritesheets/blue-ninja/Idle.png",
+        frameWidth: 16,
+        frameHeight: 16,
+      },
+      {
+        key: "blue-ninja-walk",
+        src: "./spritesheets/blue-ninja/Walk.png",
+        frameWidth: 16,
+        frameHeight: 16,
+      },
+
+      {
+        key: "mill-propeller-active",
+        src: "./spritesheets/mill-propeller/SpriteSheet64x64.png",
+        frameWidth: 64,
+        frameHeight: 64,
+      },
     ];
 
     const maps = [{ key: "map-main", src: "/tilemaps/maps/main.json" }];
@@ -133,7 +147,7 @@ export default class MainScene extends Phaser.Scene {
     }
 
     for (const spriteSheet of spriteSheets) {
-      const { key, src } = spriteSheet;
+      const { key, src, frameWidth, frameHeight } = spriteSheet;
       this.load.spritesheet(key, src, {
         frameWidth,
         frameHeight,
