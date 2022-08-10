@@ -24,11 +24,11 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    this.character.update();
-    // this.scroll.update();
+    // this.character.update();
+    this.scroll.update();
     // var pointer = this.input.activePointer;
     // if (pointer.isDown) {
-    //   // this.character.moveTo(pointer.worldX, pointer.worldY);
+    //   this.character.moveTo(pointer.worldX, pointer.worldY);
     // }
 
     // if (this.cursors.left.isDown) {
@@ -53,12 +53,26 @@ export default class MainScene extends Phaser.Scene {
     // });
 
     this.character = new Character("blue-ninja", this, 200, 200);
+    this.character.visible = false;
 
-    // this.scroll = new Scroll("scroll", this, 104, 112);
+    this.scroll = new Scroll("scroll", this, 240, 200);
+
+    this.add.text(220, 220, "Waves flung themselves\nat the blue evening.", {
+      fontFamily: "NormalFont",
+      color: "#000000",
+    });
+
+    // this.add.bitmapText(220, 270, "font", "PHASER 3");
   }
 
   initCamera() {
     this.cameras.main.setSize(this.game.scale.width, this.game.scale.height);
+    this.cameras.main.setBounds(
+      0,
+      0,
+      this.game.scale.width,
+      this.game.scale.height
+    );
     this.cameras.main.startFollow(this.character, true, 0.09, 0.09);
     this.cameras.main.setZoom(3);
   }

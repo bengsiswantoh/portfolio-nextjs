@@ -108,7 +108,6 @@ export default class MainScene extends Phaser.Scene {
   loadAssets() {
     this.load.baseURL = "assets/";
 
-    // this.load.image("blue-ninja-dead", "./sprites/blue-ninja/Dead.png");
     const frameHeight = 16;
     const frameWidth = 16;
 

@@ -17,11 +17,10 @@ export default class Character extends Phaser.GameObjects.Sprite {
     this.body.setSize(16, 16);
     this.body.setOffset(0, 0);
 
-    this.setAnimations(baseKey);
+    this.initAnimations(baseKey);
 
     this.anims.play(`${this.state}-${this.facing}`);
-    this.target.x = this.body.position.x;
-    this.target.y = this.body.position.y;
+    this.target.set(this.body.center.x, this.body.center.y);
   }
 
   update() {
@@ -39,7 +38,7 @@ export default class Character extends Phaser.GameObjects.Sprite {
     this.playAnimation();
   }
 
-  setAnimations(baseKey) {
+  initAnimations(baseKey) {
     const animations = [];
 
     const states = [
