@@ -53,6 +53,7 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.scene.start("MainScene");
+    this.scene.start("UIScene");
   }
 
   initLoading() {

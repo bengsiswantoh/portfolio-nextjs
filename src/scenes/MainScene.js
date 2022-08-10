@@ -2,13 +2,14 @@ import * as Phaser from "phaser";
 
 import Character from "../classes/Character";
 import Scroll from "../classes/Scroll";
-import Text from "../classes/Text";
 
 export default class MainScene extends Phaser.Scene {
   character;
   scroll;
 
   cursors;
+
+  uiCamera;
 
   constructor() {
     super({ key: "MainScene" });
@@ -54,16 +55,15 @@ export default class MainScene extends Phaser.Scene {
     // });
 
     this.character = new Character("blue-ninja", this, 200, 200);
-    this.character.visible = false;
+    // this.character.visible = false;
+    // console.log(this.character.body.position.)
 
-    this.scroll = new Scroll("scroll", this, 240, 200);
+    this.scroll = new Scroll("scroll", this, 300, 200);
 
-    this.add.text(220, 220, "Waves flung themselves\nat the blue evening.", {
-      fontFamily: "NormalFont",
-      color: "#000000",
-    });
-
-    new Text(this, 220, 250, "Waves flung themselves\nat the blue evening.");
+    // this.add.text(220, 220, "Waves flung themselves\nat the blue evening.", {
+    //   fontFamily: "NormalFont",
+    //   color: "#000000",
+    // });
   }
 
   initCamera() {
@@ -75,13 +75,12 @@ export default class MainScene extends Phaser.Scene {
       this.game.scale.height
     );
     this.cameras.main.startFollow(this.character, true, 0.09, 0.09);
-    this.cameras.main.setZoom(2);
+    this.cameras.main.setZoom(3);
   }
 
   initInput() {
     // this.input.mouse.disableContextMenu();
-
     //  Input Events
-    this.cursors = this.input.keyboard.createCursorKeys();
+    // this.cursors = this.input.keyboard.createCursorKeys();
   }
 }

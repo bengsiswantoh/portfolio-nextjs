@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 
 import LoadingScene from "./scenes/LoadingScene";
 import MainScene from "./scenes/MainScene";
+import UIScene from "./scenes/UIScene";
 
 const parent = "game";
 
@@ -26,7 +27,7 @@ const config = {
     height,
   },
   type: Phaser.AUTO,
-  scene: [LoadingScene, MainScene],
+  scene: [LoadingScene, MainScene, UIScene],
   physics: {
     default: "arcade",
     arcade: {
