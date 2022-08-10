@@ -1,5 +1,11 @@
 import * as Phaser from "phaser";
 
+const progressBarWidth = 320;
+const progressBarHeight = 50;
+const progressBarMargin = 10;
+let progressBarX = 0;
+let progressBarY = 0;
+
 let progressBar;
 let progressBox;
 let loadingText;
@@ -10,7 +16,12 @@ const progress = (value) => {
   percentText.setText(parseInt(value * 100) + "%");
   progressBar.clear();
   progressBar.fillStyle(0xffffff, 1);
-  progressBar.fillRect(250, 280, 300 * value, 30);
+  progressBar.fillRect(
+    progressBarX + progressBarMargin,
+    progressBarY + progressBarMargin,
+    (progressBarWidth - 2 * progressBarMargin) * value,
+    progressBarHeight - 2 * progressBarMargin
+  );
 };
 
 const fileProgress = (file) => {
@@ -45,13 +56,21 @@ export default class MainScene extends Phaser.Scene {
   }
 
   initLoading() {
+    const width = this.cameras.main.width;
+    const height = this.cameras.main.height;
+    progressBarX = width / 2 - progressBarWidth / 2;
+    progressBarY = height / 2 - progressBarHeight / 2;
+
     progressBar = this.add.graphics();
     progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
-    progressBox.fillRect(240, 270, 320, 50);
+    progressBox.fillRect(
+      progressBarX,
+      progressBarY,
+      progressBarWidth,
+      progressBarHeight
+    );
 
-    const width = this.cameras.main.width;
-    const height = this.cameras.main.height;
     loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
@@ -100,20 +119,17 @@ export default class MainScene extends Phaser.Scene {
       { key: "scroll-empty", src: "/images/scrolls/ScrollEmpty.png" },
       { key: "scroll-fire", src: "/images/scrolls/ScrollFire.png" },
     ];
-    const maps = [{ key: "map-main", src: "/tilemaps/maps/main.json" }];
+
     const spriteSheets = [
-      { key: "blue-ninja-idle", src: "./sprites/blue-ninja/Idle.png" },
-      { key: "blue-ninja-walk", src: "./sprites/blue-ninja/Walk.png" },
+      { key: "blue-ninja-idle", src: "./spritesheets/blue-ninja/Idle.png" },
+      { key: "blue-ninja-walk", src: "./spritesheets/blue-ninja/Walk.png" },
     ];
+
+    const maps = [{ key: "map-main", src: "/tilemaps/maps/main.json" }];
 
     for (const image of images) {
       const { key, src } = image;
       this.load.image(key, src);
-    }
-
-    for (const map of maps) {
-      const { key, src } = map;
-      this.load.tilemapTiledJSON(key, src);
     }
 
     for (const spriteSheet of spriteSheets) {
@@ -122,6 +138,11 @@ export default class MainScene extends Phaser.Scene {
         frameWidth,
         frameHeight,
       });
+    }
+
+    for (const map of maps) {
+      const { key, src } = map;
+      this.load.tilemapTiledJSON(key, src);
     }
   }
 }
