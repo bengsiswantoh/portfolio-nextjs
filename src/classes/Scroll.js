@@ -1,35 +1,35 @@
 import * as Phaser from "phaser";
 
-let active = false;
+import Actor from "../base/Actor";
 
-export default class Scroll extends Phaser.GameObjects.Sprite {
-  constructor(baseKey, scene, x, y, texture, frame) {
+export default class Scroll extends Actor {
+  constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    scene.add.existing(this);
-
-    this.setTexture("scroll-empty");
-
     this.setInteractive(
-      new Phaser.Geom.Rectangle(0, 0, 16, 32),
+      new Phaser.Geom.Rectangle(0, 0, 16, 16),
       Phaser.Geom.Rectangle.Contains,
       { cursor: "pointer" }
     );
 
+    this.onPointerOut();
+
     this.on("pointerover", function (event) {
-      active = true;
+      this.onPointerOver();
     });
 
     this.on("pointerout", function (event) {
-      active = false;
+      this.onPointerOut();
     });
   }
 
-  update() {
-    const texture = active ? "scroll-fire" : "scroll-empty";
+  onPointerOver() {
+    this.setAlpha(1);
+    this.setTexture("scroll-fire");
+  }
 
-    if (this.texture !== texture) {
-      this.setTexture(texture);
-    }
+  onPointerOut() {
+    this.setAlpha(0.8);
+    this.setTexture("scroll-empty");
   }
 }

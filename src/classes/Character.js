@@ -1,6 +1,8 @@
 import * as Phaser from "phaser";
 
-export default class Character extends Phaser.GameObjects.Sprite {
+import Actor from "../base/Actor";
+
+export default class Character extends Actor {
   moveSpeed = 200;
 
   target = new Phaser.Math.Vector2();
@@ -10,9 +12,8 @@ export default class Character extends Phaser.GameObjects.Sprite {
   constructor(baseKey, scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    scene.add.existing(this);
-
     scene.physics.add.existing(this);
+
     this.body.setCollideWorldBounds(true);
     this.body.setSize(16, 16);
     this.body.setOffset(0, 0);
@@ -20,22 +21,20 @@ export default class Character extends Phaser.GameObjects.Sprite {
     this.initAnimations(baseKey);
 
     this.anims.play(`${this.state}-${this.facing}`);
-    this.target.set(this.body.center.x, this.body.center.y);
+    // this.target.set(this.body.center.x, this.body.center.y);
   }
 
   update() {
-    const distance = Phaser.Math.Distance.Between(
-      this.body.center.x,
-      this.body.center.y,
-      this.target.x,
-      this.target.y
-    );
-
-    if (distance <= 4) {
-      this.body.velocity.set(0, 0);
-    }
-
-    this.playAnimation();
+    // const distance = Phaser.Math.Distance.Between(
+    //   this.body.center.x,
+    //   this.body.center.y,
+    //   this.target.x,
+    //   this.target.y
+    // );
+    // if (distance <= 4) {
+    //   this.body.velocity.set(0, 0);
+    // }
+    // this.playAnimation();
   }
 
   initAnimations(baseKey) {
@@ -79,39 +78,34 @@ export default class Character extends Phaser.GameObjects.Sprite {
   }
 
   playAnimation() {
-    if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
-      if (this.body.velocity.x > 0) {
-        this.facing = "right";
-      }
-
-      if (this.body.velocity.x < 0) {
-        this.facing = "left";
-      }
-    } else {
-      if (this.body.velocity.y < 0) {
-        this.facing = "up";
-      }
-
-      if (this.body.velocity.y > 0) {
-        this.facing = "down";
-      }
-    }
-
-    if (this.body.speed !== 0) {
-      this.state = "walk";
-    } else {
-      this.state = "idle";
-    }
-
-    this.anims.play(`${this.state}-${this.facing}`, true);
+    // if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+    //   if (this.body.velocity.x > 0) {
+    //     this.facing = "right";
+    //   }
+    //   if (this.body.velocity.x < 0) {
+    //     this.facing = "left";
+    //   }
+    // } else {
+    //   if (this.body.velocity.y < 0) {
+    //     this.facing = "up";
+    //   }
+    //   if (this.body.velocity.y > 0) {
+    //     this.facing = "down";
+    //   }
+    // }
+    // if (this.body.speed !== 0) {
+    //   this.state = "walk";
+    // } else {
+    //   this.state = "idle";
+    // }
+    // this.anims.play(`${this.state}-${this.facing}`, true);
   }
 
   moveTo(x, y) {
-    if (this.state === "walk") {
-      return;
-    }
-
-    this.target.set(x, y);
-    this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
+    //   if (this.state === "walk") {
+    //     return;
+    //   }
+    //   this.target.set(x, y);
+    //   this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
   }
 }
