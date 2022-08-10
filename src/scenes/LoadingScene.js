@@ -132,7 +132,7 @@ export default class MainScene extends Phaser.Scene {
       },
 
       {
-        key: "mill-propeller-active",
+        key: "mill-propeller",
         src: "./spritesheets/mill-propeller/SpriteSheet64x64.png",
         frameWidth: 64,
         frameHeight: 64,

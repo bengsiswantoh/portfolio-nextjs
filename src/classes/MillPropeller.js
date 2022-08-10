@@ -8,15 +8,16 @@ export default class MillPropeller extends Actor {
 
     const states = [
       {
-        name: "active",
+        key: "active",
+        imageKey: "mill-propeller",
         frameCount: 4,
         frameMargin: 1,
         frameRate: 8,
         repeat: -1,
       },
     ];
-    this.initAnimations("mill-propeller", states);
+    this.initAnimations(states);
 
-    this.anims.play(`${this.state}`);
+    this.anims.play(this.state);
   }
 }

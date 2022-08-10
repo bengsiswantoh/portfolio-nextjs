@@ -22,7 +22,8 @@ export default class Character extends Actor {
       { name: "idle", frameCount: 1, frameMargin: 1, frameRate: 8, repeat: 0 },
       { name: "walk", frameCount: 4, frameMargin: 4, frameRate: 8, repeat: -1 },
     ];
-    this.initAnimationsWithDirection(baseKey, states);
+    const directions = ["down", "up", "left", "right"];
+    this.initAnimationsWithDirection(baseKey, states, directions);
 
     this.anims.play(`${this.state}-${this.facing}`);
     // this.target.set(this.body.center.x, this.body.center.y);
