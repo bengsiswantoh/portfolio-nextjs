@@ -4,7 +4,7 @@ import Character from "../sprites/Character";
 import Scroll from "../sprites/Scroll";
 
 export default class MainScene extends Phaser.Scene {
-  character;
+  // character;
   scroll;
 
   constructor() {
@@ -24,7 +24,7 @@ export default class MainScene extends Phaser.Scene {
       console.log(scroll.name);
     });
 
-    this.character = new Character("blue-ninja", this, 0, 0);
+    // this.character = new Character("blue-ninja", this, 0, 0);
 
     this.scroll = new Scroll("scroll", this, 104, 112);
 
@@ -32,7 +32,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    this.character.update();
+    // this.character.update();
     this.scroll.update();
 
     var pointer = this.input.activePointer;

@@ -7,14 +7,14 @@ export default class Scroll extends Phaser.GameObjects.Sprite {
     super(scene, x, y, texture, frame);
 
     scene.add.existing(this);
-    scene.physics.add.existing(this);
-    this.body.setCollideWorldBounds(true);
-    this.body.setSize(16, 16);
-    this.body.setOffset(0, 0);
-
-    this.setInteractive();
 
     this.setTexture("scroll-empty");
+
+    this.setInteractive(
+      new Phaser.Geom.Rectangle(0, 0, 16, 32),
+      Phaser.Geom.Rectangle.Contains,
+      { cursor: "pointer" }
+    );
 
     this.on("pointerover", function (event) {
       active = true;
