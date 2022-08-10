@@ -1,7 +1,8 @@
 import * as Phaser from "phaser";
 
-import Character from "../sprites/Character";
-import Scroll from "../sprites/Scroll";
+import Character from "../classes/Character";
+import Scroll from "../classes/Scroll";
+import Text from "../classes/Text";
 
 export default class MainScene extends Phaser.Scene {
   character;
@@ -62,7 +63,7 @@ export default class MainScene extends Phaser.Scene {
       color: "#000000",
     });
 
-    // this.add.bitmapText(220, 270, "font", "PHASER 3");
+    new Text(this, 220, 250, "Waves flung themselves\nat the blue evening.");
   }
 
   initCamera() {
@@ -74,7 +75,7 @@ export default class MainScene extends Phaser.Scene {
       this.game.scale.height
     );
     this.cameras.main.startFollow(this.character, true, 0.09, 0.09);
-    this.cameras.main.setZoom(3);
+    this.cameras.main.setZoom(2);
   }
 
   initInput() {
