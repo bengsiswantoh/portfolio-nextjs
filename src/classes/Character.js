@@ -14,7 +14,7 @@ export default class Character extends Actor {
 
     scene.physics.add.existing(this);
 
-    this.body.setCollideWorldBounds(true);
+    // this.body.setCollideWorldBounds(true);
     this.body.setSize(16, 16);
     this.body.setOffset(0, 0);
 

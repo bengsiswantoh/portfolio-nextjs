@@ -3,6 +3,11 @@ import * as Phaser from "phaser";
 import Character from "../classes/Character";
 import Scroll from "../classes/Scroll";
 
+const scrollClick = (scroll) => {
+  console.log(scroll.name);
+  scroll.setTint(0xff0000);
+};
+
 export default class MapScene extends Phaser.Scene {
   character;
   scrolls;
@@ -55,27 +60,27 @@ export default class MapScene extends Phaser.Scene {
     this.scrolls = this.add.group();
     map.getObjectLayer("scrolls").objects.forEach((scroll) => {
       const { x, y, name } = scroll;
-      this.scrolls.add(new Scroll(this, x, y));
-      console.log(name, x, y);
+      const scrollSprite = new Scroll(scrollClick, name, this, x, y);
+      // scrollSprite.on("pointerdown", (pointer) => {
+      //   // this.setTint(0xff0000);
+      //   scrollClick(this.scrolls.getChildren());
+      // });
+      // scrollSprite.on("pointerup", (pointer) => {});
+      this.scrolls.add(scrollSprite);
     });
 
     map.getObjectLayer("player").objects.forEach((scroll) => {
       const { x, y, name } = scroll;
       this.character = new Character("blue-ninja", this, x, y);
-      console.log(name, x, y);
     });
   }
 
   initCamera() {
-    // this.cameras.main.setBounds(0, 0, width, height);
     // const { width, height } = this.game.scale;
-    // // const { x, y } = this.character;
-    // this.cameras.main.setSize(width, height);
+    // this.cameras.main.setBounds(0, 0, width, height);
+
     this.cameras.main.setZoom(3);
-    // // this.cameras.main.centerOn(x, y);
-    // this.cameras.main.startFollow(this.character, true, 0.09, 0.09);
-    // console.log(width);
-    // console.log(height);
+
     const { x, y } = this.character;
     this.cameras.main.centerOn(x, y);
   }
