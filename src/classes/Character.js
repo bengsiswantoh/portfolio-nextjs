@@ -8,7 +8,6 @@ export default class Character extends Actor {
   target = new Phaser.Math.Vector2();
 
   baseKey;
-  state;
   facing;
 
   constructor(baseKey, scene, x, y, texture, frame) {

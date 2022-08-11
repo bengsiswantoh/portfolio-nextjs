@@ -9,12 +9,12 @@ export default class Scroll extends Phaser.GameObjects.Image {
     scene.add.existing(this);
 
     this.onPointerOut();
-    this.on("pointerover", this.onPointerOver);
-    this.on("pointerout", this.onPointerOut);
-    this.on("pointerdown", this.onPointerDown);
-    this.on("pointerup", this.onPointerUp);
+    // this.on("pointerover", this.onPointerOver);
+    // this.on("pointerout", this.onPointerOut);
+    // this.on("pointerdown", this.onPointerDown);
+    // this.on("pointerup", this.onPointerUp);
 
-    this.setInteractive({ useHandCursor: true });
+    // this.setInteractive({ useHandCursor: true });
   }
 
   onPointerOver(pointer) {

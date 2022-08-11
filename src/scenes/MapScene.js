@@ -68,8 +68,7 @@ export default class MapScene extends Phaser.Scene {
       // itemObject.setPointerUp(scrollClick);
 
       const itemObject = new ScrollWithPillar(this, x, y);
-      // itemObject.addTileS
-      // this.scrolls.add(itemObject);
+      this.scrolls.add(itemObject);
     });
 
     this.millPropellers = this.add.group();
@@ -89,7 +88,7 @@ export default class MapScene extends Phaser.Scene {
     // const { width, height } = this.game.scale;
     // this.cameras.main.setBounds(0, 0, width, height);
 
-    this.cameras.main.setZoom(3);
+    this.cameras.main.setZoom(2);
 
     const { x, y } = this.character;
     this.cameras.main.centerOn(x, y);
