@@ -1,10 +1,12 @@
-import Actor from "../base/Actor";
+import * as Phaser from "phaser";
 
-export default class Scroll extends Actor {
+export default class Scroll extends Phaser.GameObjects.Image {
   pointerDown;
+  pointerUp;
 
   constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
+    scene.add.existing(this);
 
     this.onPointerOut();
     this.on("pointerover", this.onPointerOver);
@@ -27,14 +29,23 @@ export default class Scroll extends Actor {
   }
 
   onPointerDown(pointer) {
-    this.pointerDown(this);
+    if (this.pointerDown) {
+      this.pointerDown(this);
+    }
   }
 
   onPointerUp(pointer) {
     this.clearTint();
+    if (this.pointerUp) {
+      this.pointerUp(this);
+    }
   }
 
   setPointerDown(pointerDown) {
     this.pointerDown = pointerDown;
+  }
+
+  setPointerUp(pointerUp) {
+    this.pointerUp = pointerUp;
   }
 }

@@ -2,6 +2,7 @@ import * as Phaser from "phaser";
 
 import Character from "../classes/Character";
 import Scroll from "../classes/Scroll";
+import ScrollWithPillar from "../classes/ScrollWithPillar";
 import MillPropeller from "../classes/MillPropeller";
 
 const scrollClick = (scroll) => {
@@ -62,17 +63,20 @@ export default class MapScene extends Phaser.Scene {
     this.scrolls = this.add.group();
     map.getObjectLayer("scrolls").objects.forEach((item) => {
       const { x, y, name } = item;
-      const itemSprite = new Scroll(this, x, y);
-      itemSprite.name = name;
-      itemSprite.setPointerDown(scrollClick);
-      this.scrolls.add(itemSprite);
+      // const itemObject = new Scroll(this, x, y);
+      // itemObject.name = name;
+      // itemObject.setPointerUp(scrollClick);
+
+      const itemObject = new ScrollWithPillar(this, x, y);
+      // itemObject.addTileS
+      // this.scrolls.add(itemObject);
     });
 
     this.millPropellers = this.add.group();
     map.getObjectLayer("mill-propellers").objects.forEach((item) => {
       const { x, y } = item;
-      const itemSprite = new MillPropeller(this, x, y);
-      this.millPropellers.add(itemSprite);
+      const itemObject = new MillPropeller(this, x, y);
+      this.millPropellers.add(itemObject);
     });
 
     map.getObjectLayer("player").objects.forEach((item) => {
