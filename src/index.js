@@ -21,11 +21,13 @@ const [width, height] = getWidth();
 
 const config = {
   parent,
-  scale: {
-    mode: Phaser.Scale.ScaleModes.NONE,
-    width,
-    height,
-  },
+  // scale: {
+  //   mode: Phaser.Scale.ScaleModes.NONE,
+  //   width,
+  //   height,
+  // },
+  width,
+  height,
   type: Phaser.AUTO,
   physics: {
     default: "arcade",
@@ -38,11 +40,11 @@ const config = {
     antialiasGL: false,
     pixelArt: true,
   },
-  allbacks: {
-    postBoot: () => {
-      window.sizeChanged();
-    },
-  },
+  // allbacks: {
+  //   postBoot: () => {
+  //     window.sizeChanged();
+  //   },
+  // },
   canvasStyle: `display: block; width: 100%; height: 100%;`,
   autoFocus: true,
   audio: {
@@ -51,25 +53,25 @@ const config = {
   scene: [LoadingScene, MapScene, UIScene],
 };
 
-window.sizeChanged = () => {
-  if (window.game.isBooted) {
-    setTimeout(() => {
-      const [width, height] = getWidth();
+// window.sizeChanged = () => {
+//   if (window.game.isBooted) {
+//     setTimeout(() => {
+//       const [width, height] = getWidth();
 
-      window.game.scale.resize(width, height);
-      window.game.canvas.setAttribute(
-        "style",
-        `display: block; width: ${width}px; height: ${height}px;`
-      );
+//       window.game.scale.resize(width, height);
+//       window.game.canvas.setAttribute(
+//         "style",
+//         `display: block; width: ${width}px; height: ${height}px;`
+//       );
 
-      // window.game.scale.resize(window.innerWidth, window.innerHeight);
-      // window.game.canvas.setAttribute(
-      //   "style",
-      //   `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`
-      // );
-    }, 100);
-  }
-};
-window.onresize = () => window.sizeChanged();
+//       // window.game.scale.resize(window.innerWidth, window.innerHeight);
+//       // window.game.canvas.setAttribute(
+//       //   "style",
+//       //   `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`
+//       // );
+//     }, 100);
+//   }
+// };
+// window.onresize = () => window.sizeChanged();
 
 window.game = new Phaser.Game(config);

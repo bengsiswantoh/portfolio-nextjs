@@ -8,6 +8,9 @@ export default class UIScene extends Phaser.Scene {
 
   graphics;
 
+  tooltips;
+  objects;
+
   constructor() {
     super("UIScene");
   }
@@ -19,11 +22,20 @@ export default class UIScene extends Phaser.Scene {
 
     this.graphics = this.add.graphics();
 
-    // new Text(this, 0, 0, "Waves flung themselves\nat the blue evening.");
+    this.tooltips = this.add.group();
+    this.objects = this.mapScene.objects.getChildren();
+    for (const object of this.objects) {
+      const text = this.add.text(0, 0).setText(object.name);
+      this.tooltips.add(text);
+    }
   }
 
   update() {
     this.graphics.clear();
+
+    for (const [objectIndex, object] of this.objects.entries()) {
+      this.updateToolTip(object, this.tooltips.getChildren()[objectIndex]);
+    }
   }
 
   updateToolTip(source, tooltip) {
@@ -32,7 +44,7 @@ export default class UIScene extends Phaser.Scene {
 
     //  The marker point
     const x = (basePosition.x - camera.worldView.x) * camera.zoom;
-    const y = (basePosition.y - camera.worldView.y) * camera.zoo;
+    const y = (basePosition.y - camera.worldView.y) * camera.zoom;
 
     const graphics = this.graphics;
 
@@ -44,7 +56,8 @@ export default class UIScene extends Phaser.Scene {
     const height = tooltip.height + 32;
 
     const bx = x - width / 2;
-    const by = y - (height + 32);
+    // const by = y - (height + 32);
+    const by = y - height - source.height * camera.zoom;
 
     graphics.fillRect(bx, by, width, height);
 
