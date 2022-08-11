@@ -17,6 +17,7 @@ export default class Actor extends Phaser.GameObjects.Sprite {
   }
 
   initAnimationsWithDirection(baseKey, states, directions) {
+    this.baseKey = baseKey;
     this.state = states[0].name;
     this.facing = directions[0];
 
@@ -25,7 +26,7 @@ export default class Actor extends Phaser.GameObjects.Sprite {
     for (const state of states) {
       for (const [directionIndex, direction] of directions.entries()) {
         const { name, frameCount, frameMargin, frameRate, repeat } = state;
-        const key = `${name}-${direction}`;
+        const key = `${baseKey}-${name}-${direction}`;
         const imageKey = `${baseKey}-${name}`;
 
         const frames = createFrames(directionIndex, frameCount, frameMargin);

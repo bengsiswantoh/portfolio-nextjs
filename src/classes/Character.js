@@ -6,6 +6,8 @@ export default class Character extends Actor {
   moveSpeed = 200;
 
   target = new Phaser.Math.Vector2();
+
+  baseKey;
   state;
   facing;
 
@@ -25,7 +27,7 @@ export default class Character extends Actor {
     const directions = ["down", "up", "left", "right"];
     this.initAnimationsWithDirection(baseKey, states, directions);
 
-    this.anims.play(`${this.state}-${this.facing}`);
+    this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`);
     // this.target.set(this.body.center.x, this.body.center.y);
   }
 

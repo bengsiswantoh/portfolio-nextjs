@@ -62,7 +62,9 @@ export default class MapScene extends Phaser.Scene {
     this.scrolls = this.add.group();
     map.getObjectLayer("scrolls").objects.forEach((item) => {
       const { x, y, name } = item;
-      const itemSprite = new Scroll(scrollClick, name, this, x, y);
+      const itemSprite = new Scroll(this, x, y);
+      itemSprite.name = name;
+      itemSprite.setPointerDown(scrollClick);
       this.scrolls.add(itemSprite);
     });
 
@@ -72,7 +74,6 @@ export default class MapScene extends Phaser.Scene {
       const itemSprite = new MillPropeller(this, x, y);
       this.millPropellers.add(itemSprite);
     });
-    // new MillPropeller(this, 728, 376);
 
     map.getObjectLayer("player").objects.forEach((item) => {
       const { x, y } = item;

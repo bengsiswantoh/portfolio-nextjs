@@ -3,24 +3,16 @@ import Actor from "../base/Actor";
 export default class Scroll extends Actor {
   pointerDown;
 
-  constructor(pointerDown, name, scene, x, y, texture, frame) {
+  constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
-
-    // this.setInteractive(
-    //   new Phaser.Geom.Rectangle(0, 0, 16, 16),
-    //   Phaser.Geom.Rectangle.Contains,
-    //   { cursor: "pointer" }
-    // );
-    this.setInteractive({ cursor: "pointer" });
-
-    this.pointerDown = pointerDown;
-    this.name = name;
 
     this.onPointerOut();
     this.on("pointerover", this.onPointerOver);
     this.on("pointerout", this.onPointerOut);
     this.on("pointerdown", this.onPointerDown);
     this.on("pointerup", this.onPointerUp);
+
+    this.setInteractive({ useHandCursor: true });
   }
 
   onPointerOver(pointer) {
@@ -40,5 +32,9 @@ export default class Scroll extends Actor {
 
   onPointerUp(pointer) {
     this.clearTint();
+  }
+
+  setPointerDown(pointerDown) {
+    this.pointerDown = pointerDown;
   }
 }
