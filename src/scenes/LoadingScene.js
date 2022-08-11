@@ -120,20 +120,20 @@ export default class MainScene extends Phaser.Scene {
     const spriteSheets = [
       {
         key: "blue-ninja-idle",
-        src: "./spritesheets/blue-ninja/Idle.png",
+        src: "./images/blue-ninja/Idle.png",
         frameWidth: 16,
         frameHeight: 16,
       },
       {
         key: "blue-ninja-walk",
-        src: "./spritesheets/blue-ninja/Walk.png",
+        src: "./images/blue-ninja/Walk.png",
         frameWidth: 16,
         frameHeight: 16,
       },
 
       {
         key: "mill-propeller",
-        src: "./spritesheets/mill-propeller/SpriteSheet64x64.png",
+        src: "./images/mill-propeller/SpriteSheet64x64.png",
         frameWidth: 64,
         frameHeight: 64,
       },
