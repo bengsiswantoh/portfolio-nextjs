@@ -1,18 +1,22 @@
 import * as Phaser from "phaser";
 
 import Character from "../classes/Character";
-import Scroll from "../classes/Scroll";
 import ScrollWithPillar from "../classes/ScrollWithPillar";
 import MillPropeller from "../classes/MillPropeller";
+import MillPropellerWithBuilding from "../classes/MillPropellerWithBuilding";
+
+const CLASSES = {
+  about: Character,
+  experiences: ScrollWithPillar,
+};
 
 const scrollClick = (scroll) => {
   console.log(scroll.name);
-  scroll.setTint(0xff0000);
 };
 
 export default class MapScene extends Phaser.Scene {
   character;
-  scrolls;
+  objects;
   millPropellers;
 
   cursors;
@@ -31,26 +35,7 @@ export default class MapScene extends Phaser.Scene {
     this.initInput();
   }
 
-  update() {
-    // this.character.update();
-    // this.scrolls.update();
-    // var pointer = this.input.activePointer;
-    // if (pointer.isDown) {
-    //   this.character.moveTo(pointer.worldX, pointer.worldY);
-    // }
-    if (this.cursors.left.isDown) {
-      this.cameras.main.scrollX--;
-    }
-    if (this.cursors.right.isDown) {
-      this.cameras.main.scrollX++;
-    }
-    if (this.cursors.up.isDown) {
-      this.cameras.main.scrollY--;
-    }
-    if (this.cursors.down.isDown) {
-      this.cameras.main.scrollY++;
-    }
-  }
+  update() {}
 
   initMap() {
     const map = this.make.tilemap({ key: "map-main" });
@@ -60,27 +45,21 @@ export default class MapScene extends Phaser.Scene {
     map.createLayer("floor", tileFloor);
     map.createLayer("house", tileHouse);
 
-    this.scrolls = this.add.group();
-    map.getObjectLayer("scrolls").objects.forEach((item) => {
+    this.objects = this.add.group();
+    map.getObjectLayer("objects").objects.forEach((item) => {
       const { x, y, name } = item;
-      // const itemObject = new Scroll(this, x, y);
-      // itemObject.name = name;
-      // itemObject.setPointerUp(scrollClick);
-
-      const itemObject = new ScrollWithPillar(this, x, y);
-      this.scrolls.add(itemObject);
+      const itemObject = new CLASSES[name](this, x, y);
+      itemObject.name = name;
+      itemObject.setPointerUp(scrollClick);
+      this.objects.add(itemObject);
     });
 
     this.millPropellers = this.add.group();
     map.getObjectLayer("mill-propellers").objects.forEach((item) => {
       const { x, y } = item;
-      const itemObject = new MillPropeller(this, x, y);
+      // const itemObject = new MillPropeller(this, x, y);
+      const itemObject = new MillPropellerWithBuilding(this, x, y);
       this.millPropellers.add(itemObject);
-    });
-
-    map.getObjectLayer("player").objects.forEach((item) => {
-      const { x, y } = item;
-      this.character = new Character("blue-ninja", this, x, y);
     });
   }
 
@@ -90,12 +69,13 @@ export default class MapScene extends Phaser.Scene {
 
     this.cameras.main.setZoom(2);
 
-    const { x, y } = this.character;
-    this.cameras.main.centerOn(x, y);
+    // const { x, y } = this.character;
+    this.cameras.main.centerOn(600, 400);
   }
 
   initInput() {
     // this.input.mouse.disableContextMenu();
+
     //  Input Events
     this.cursors = this.input.keyboard.createCursorKeys();
   }

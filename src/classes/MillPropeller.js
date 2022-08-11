@@ -1,6 +1,6 @@
-import Actor from "../base/Actor";
+import Sprite from "../base/Sprite";
 
-export default class MillPropeller extends Actor {
+export default class MillPropeller extends Sprite {
   state;
 
   constructor(scene, x, y, texture, frame) {

@@ -6,17 +6,11 @@ export default class Property extends Phaser.GameObjects.Image {
     scene.add.existing(this);
   }
 
-  cropImage(row, column, rowCount, columnCount) {
-    const tileSize = 16;
-
-    const cropX = row * tileSize;
-    const cropY = column * tileSize;
-    const cropWidth = rowCount * tileSize;
-    const cropHeight = columnCount * tileSize;
-    this.setCrop(cropX, cropY, cropWidth, cropHeight);
+  cropImage(x, y, width, height) {
+    this.setCrop(x, y, width, height);
 
     this.setOrigin(0);
-    this.x -= cropX + tileSize / 2;
-    this.y -= cropY + tileSize / 2;
+    this.x -= x + width / 2;
+    this.y -= y + height / 2;
   }
 }

@@ -1,117 +1,67 @@
 import * as Phaser from "phaser";
 
-import Actor from "../base/Actor";
+import Sprite from "../base/Sprite";
 
-export default class Character extends Actor {
-  moveSpeed = 200;
+export default class Character extends Sprite {
+  pointerDown;
+  pointerUp;
 
-  target = new Phaser.Math.Vector2();
-
-  baseKey;
+  baseKey = "blue-ninja";
   facing;
 
-  constructor(baseKey, scene, x, y, texture, frame) {
+  constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    scene.physics.add.existing(this);
-
-    // this.body.setCollideWorldBounds(true);
-    this.body.setSize(16, 16);
-    this.body.setOffset(0, 0);
+    // scene.physics.add.existing(this);
+    // this.body.setSize(16, 16);
+    // this.body.setOffset(0, 0);
 
     const states = [
       { name: "idle", frameCount: 1, frameMargin: 1, frameRate: 8, repeat: 0 },
       { name: "walk", frameCount: 4, frameMargin: 4, frameRate: 8, repeat: -1 },
     ];
     const directions = ["down", "up", "left", "right"];
-    this.initAnimationsWithDirection(baseKey, states, directions);
+    this.initAnimationsWithDirection(this.baseKey, states, directions);
 
+    this.onPointerOut();
+
+    this.setInteractive({ useHandCursor: true });
+
+    this.on("pointerover", this.onPointerOver);
+    this.on("pointerout", this.onPointerOut);
+    this.on("pointerdown", this.onPointerDown);
+    this.on("pointerup", this.onPointerUp);
+  }
+
+  onPointerOver(pointer) {
+    this.setAlpha(1);
+    this.state = "walk";
     this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`);
-    // this.target.set(this.body.center.x, this.body.center.y);
   }
 
-  update() {
-    // const distance = Phaser.Math.Distance.Between(
-    //   this.body.center.x,
-    //   this.body.center.y,
-    //   this.target.x,
-    //   this.target.y
-    // );
-    // if (distance <= 4) {
-    //   this.body.velocity.set(0, 0);
-    // }
-    // this.playAnimation();
+  onPointerOut(pointer) {
+    this.setAlpha(0.8);
+    this.state = "idle";
+    this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`);
   }
 
-  // initAnimations(baseKey) {
-  //   const animations = [];
-
-  //   const states = [
-  //     { name: "idle", frameCount: 1, frameRate: 8, repeat: 0 },
-  //     { name: "walk", frameCount: 4, frameRate: 8, repeat: -1 },
-  //   ];
-  //   this.state = states[0].name;
-
-  //   const directions = ["down", "up", "left", "right"];
-  //   this.facing = directions[0];
-
-  //   for (const state of states) {
-  //     for (const [directionIndex, direction] of directions.entries()) {
-  //       const { name, frameCount, frameRate, repeat } = state;
-  //       const key = `${name}-${direction}`;
-  //       const imageKey = `${baseKey}-${name}`;
-
-  //       let frames = [];
-  //       let frameIndex = directionIndex;
-  //       for (let index = 0; index < frameCount; index++) {
-  //         frames.push(frameIndex);
-  //         frameIndex += frameCount;
-  //       }
-
-  //       animations.push({ key, imageKey, frames, frameRate, repeat });
-  //     }
-  //   }
-
-  //   for (const animation of animations) {
-  //     const { key, frames, frameRate, repeat, imageKey } = animation;
-  //     this.anims.create({
-  //       key,
-  //       frames: this.anims.generateFrameNumbers(imageKey, { frames }),
-  //       frameRate,
-  //       repeat,
-  //     });
-  //   }
-  // }
-
-  playAnimation() {
-    // if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
-    //   if (this.body.velocity.x > 0) {
-    //     this.facing = "right";
-    //   }
-    //   if (this.body.velocity.x < 0) {
-    //     this.facing = "left";
-    //   }
-    // } else {
-    //   if (this.body.velocity.y < 0) {
-    //     this.facing = "up";
-    //   }
-    //   if (this.body.velocity.y > 0) {
-    //     this.facing = "down";
-    //   }
-    // }
-    // if (this.body.speed !== 0) {
-    //   this.state = "walk";
-    // } else {
-    //   this.state = "idle";
-    // }
-    // this.anims.play(`${this.state}-${this.facing}`, true);
+  onPointerDown(pointer) {
+    if (this.pointerDown) {
+      this.pointerDown(this);
+    }
   }
 
-  moveTo(x, y) {
-    //   if (this.state === "walk") {
-    //     return;
-    //   }
-    //   this.target.set(x, y);
-    //   this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
+  onPointerUp(pointer) {
+    if (this.pointerUp) {
+      this.pointerUp(this);
+    }
+  }
+
+  setPointerDown(pointerDown) {
+    this.pointerDown = pointerDown;
+  }
+
+  setPointerUp(pointerUp) {
+    this.pointerUp = pointerUp;
   }
 }
