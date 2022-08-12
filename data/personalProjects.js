@@ -6,4 +6,4 @@ const personalProjects = [
   // { name: "Look At", url: "https://github.com/bengsiswantoh/look-at" },
 ];
 
-export default personalProjects;
+module.exports = personalProjects;

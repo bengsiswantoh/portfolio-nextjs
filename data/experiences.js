@@ -98,4 +98,4 @@ const experiences = [
   },
 ];
 
-export default experiences;
+module.exports = experiences;

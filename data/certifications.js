@@ -5,4 +5,4 @@ const certifications = [
   },
 ];
 
-export default certifications;
+module.exports = certifications;

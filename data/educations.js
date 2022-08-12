@@ -7,4 +7,4 @@ const educations = [
   },
 ];
 
-export default educations;
+module.exports = educations;

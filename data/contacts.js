@@ -16,4 +16,4 @@ const contacts = [
   },
 ];
 
-export default contacts;
+module.exports = contacts;
