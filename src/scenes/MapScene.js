@@ -61,6 +61,7 @@ export default class MapScene extends Phaser.Scene {
       const itemObject = new MillPropellerWithBuilding(this, x, y);
       this.millPropellers.add(itemObject);
     });
+    // console.log(this.game.data);
   }
 
   initCamera() {

@@ -75,3 +75,4 @@ const config = {
 // window.onresize = () => window.sizeChanged();
 
 window.game = new Phaser.Game(config);
+// window.game.data = "asdadasda";
