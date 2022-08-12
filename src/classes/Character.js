@@ -3,18 +3,19 @@ import * as Phaser from "phaser";
 import Sprite from "../base/Sprite";
 
 export default class Character extends Sprite {
-  pointerDown;
-  pointerUp;
-
   baseKey = "blue-ninja";
   facing;
+
+  moveSpeed = 200;
+  target = new Phaser.Math.Vector2();
 
   constructor(scene, x, y, texture, frame) {
     super(scene, x, y, texture, frame);
 
-    // scene.physics.add.existing(this);
-    // this.body.setSize(16, 16);
-    // this.body.setOffset(0, 0);
+    scene.physics.add.existing(this);
+    this.body.setSize(16, 16);
+    this.body.setOffset(0, 0);
+    this.body.setCollideWorldBounds(true);
 
     const states = [
       { name: "idle", frameCount: 1, frameMargin: 1, frameRate: 8, repeat: 0 },
@@ -23,45 +24,33 @@ export default class Character extends Sprite {
     const directions = ["down", "up", "left", "right"];
     this.initAnimationsWithDirection(this.baseKey, states, directions);
 
-    this.onPointerOut();
-
-    this.setInteractive({ useHandCursor: true });
-
-    this.on("pointerover", this.onPointerOver);
-    this.on("pointerout", this.onPointerOut);
-    this.on("pointerdown", this.onPointerDown);
-    this.on("pointerup", this.onPointerUp);
-  }
-
-  onPointerOver(pointer) {
-    this.setAlpha(1);
-    this.state = "walk";
     this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`);
+
+    this.target.set(this.body.center);
   }
 
-  onPointerOut(pointer) {
-    this.setAlpha(0.8);
-    this.state = "idle";
-    this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`);
-  }
+  update() {
+    const distance = Phaser.Math.Distance.Between(
+      this.body.center.x,
+      this.body.center.y,
+      this.target.x,
+      this.target.y
+    );
 
-  onPointerDown(pointer) {
-    if (this.pointerDown) {
-      this.pointerDown(this);
+    if (this.body.speed > 0) {
+      this.state = "walk";
+      if (distance <= 4) {
+        this.body.stop();
+        // this.body.reset(this.target.x, this.target.y);
+        this.state = "idle";
+      }
     }
+
+    this.anims.play(`${this.baseKey}-${this.state}-${this.facing}`, true);
   }
 
-  onPointerUp(pointer) {
-    if (this.pointerUp) {
-      this.pointerUp(this);
-    }
-  }
-
-  setPointerDown(pointerDown) {
-    this.pointerDown = pointerDown;
-  }
-
-  setPointerUp(pointerUp) {
-    this.pointerUp = pointerUp;
+  moveTo(x, y) {
+    this.target.set(x, y);
+    this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
   }
 }

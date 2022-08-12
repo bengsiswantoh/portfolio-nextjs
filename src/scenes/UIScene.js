@@ -9,7 +9,7 @@ export default class UIScene extends Phaser.Scene {
   graphics;
 
   tooltips;
-  objects;
+  scrolls;
 
   constructor() {
     super("UIScene");
@@ -23,8 +23,8 @@ export default class UIScene extends Phaser.Scene {
     this.graphics = this.add.graphics();
 
     this.tooltips = this.add.group();
-    this.objects = this.mapScene.objects.getChildren();
-    for (const object of this.objects) {
+    this.scrolls = this.mapScene.scrolls.getChildren();
+    for (const object of this.scrolls) {
       const text = this.add.text(0, 0).setText(object.name);
       this.tooltips.add(text);
     }
@@ -33,7 +33,7 @@ export default class UIScene extends Phaser.Scene {
   update() {
     this.graphics.clear();
 
-    for (const [objectIndex, object] of this.objects.entries()) {
+    for (const [objectIndex, object] of this.scrolls.entries()) {
       this.updateToolTip(object, this.tooltips.getChildren()[objectIndex]);
     }
   }

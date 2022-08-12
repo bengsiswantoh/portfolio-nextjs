@@ -9,8 +9,8 @@ export default class ScrollWithPillar extends Container {
 
     this.setSize(16, 40);
 
-    // scene.physics.add.existing(this);
-    // this.body.setSize(this.width, this.height);
+    scene.physics.add.existing(this, true);
+    this.body.setSize(this.width, this.height);
 
     const pillar = new Property(scene, 0, 4, "TilesetHouse");
     pillar.cropImage(112, 272, 16, 32);

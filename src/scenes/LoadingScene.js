@@ -141,6 +141,10 @@ export default class MainScene extends Phaser.Scene {
 
     const maps = [{ key: "map-main", src: "/tilemaps/maps/main.json" }];
 
+    const musics = [
+      { key: "music-credit", src: "/musics/15 - Credit Theme.ogg" },
+    ];
+
     for (const image of images) {
       const { key, src } = image;
       this.load.image(key, src);
@@ -157,6 +161,11 @@ export default class MainScene extends Phaser.Scene {
     for (const map of maps) {
       const { key, src } = map;
       this.load.tilemapTiledJSON(key, src);
+    }
+
+    for (const music of musics) {
+      const { key, src } = music;
+      this.load.audio(key, src);
     }
   }
 }
