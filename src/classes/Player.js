@@ -2,7 +2,7 @@ import * as Phaser from "phaser";
 
 import Sprite from "../base/Sprite";
 
-export default class Character extends Sprite {
+export default class Player extends Sprite {
   baseKey = "blue-ninja";
   facing;
 
@@ -59,5 +59,10 @@ export default class Character extends Sprite {
   moveTo(x, y) {
     this.target.set(x, y);
     this.scene.physics.moveToObject(this, this.target, this.moveSpeed);
+  }
+
+  stop() {
+    this.body.stop();
+    this.state = "idle";
   }
 }

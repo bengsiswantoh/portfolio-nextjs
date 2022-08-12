@@ -7,7 +7,8 @@
     "build": "npm run build-game && next build",
     "start": "next start",
     "build-game": "npx webpack",
-    "dev-game": "npx webpack serve --open --config webpack.dev.config.js"
+    "dev-game": "node copy-data.js && npx webpack serve --open --config webpack.dev.config.js",
+    "copy-data": "node copy-data.js"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.6",

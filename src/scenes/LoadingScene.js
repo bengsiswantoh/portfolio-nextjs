@@ -111,6 +111,10 @@ export default class MainScene extends Phaser.Scene {
 
     const images = [
       { key: "TilesetFloor", src: "/tilemaps/tiles/TilesetFloor.png" },
+      {
+        key: "TilesetInteriorFloor",
+        src: "/tilemaps/tiles/TilesetInteriorFloor.png",
+      },
       { key: "TilesetHouse", src: "/tilemaps/tiles/TilesetHouse.png" },
 
       { key: "scroll-empty", src: "/images/scrolls/ScrollEmpty.png" },

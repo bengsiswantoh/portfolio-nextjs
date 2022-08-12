@@ -5,9 +5,9 @@ import MapScene from "./scenes/MapScene";
 import UIScene from "./scenes/UIScene";
 
 const parent = "game";
+const div = document.getElementById(parent);
 
 const getWidth = () => {
-  const div = document.getElementById(parent);
   const width = div.clientWidth;
   return [width, window.innerHeight];
 };
@@ -75,4 +75,4 @@ const config = {
 // window.onresize = () => window.sizeChanged();
 
 window.game = new Phaser.Game(config);
-// window.game.data = "asdadasda";
+window.game.data = div.attributes.data.value;
