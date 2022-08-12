@@ -39,6 +39,13 @@ export default class Character extends Sprite {
 
     if (this.body.speed > 0) {
       this.state = "walk";
+
+      if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+        this.facing = this.body.velocity.x > 0 ? "right" : "left";
+      } else {
+        this.facing = this.body.velocity.y > 0 ? "down" : "up";
+      }
+
       if (distance <= 4) {
         this.body.stop();
         // this.body.reset(this.target.x, this.target.y);

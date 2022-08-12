@@ -32,9 +32,16 @@ export default class MapScene extends Phaser.Scene {
   create() {
     this.initMap();
 
+    this.initCollision();
+
     this.initCamera();
 
     this.initInput();
+
+    // console.log(this.game.data);
+
+    const music = this.sound.add("music-credit");
+    // music.play();
   }
 
   update() {
@@ -73,11 +80,25 @@ export default class MapScene extends Phaser.Scene {
 
     this.character = new Character(this, 550, 400);
     this.objects.add(this.character);
+  }
 
-    // console.log(this.game.data);
-
-    const music = this.sound.add("music-credit");
-    // music.play();
+  initCollision() {
+    // this.physics.add.overlap(
+    //   this.character,
+    //   this.scrolls,
+    //   (character, scroll) => {
+    //     character.stop();
+    //     console.log(scroll.name);
+    //   }
+    // );
+    // this.physics.add.collider(
+    //   this.character,
+    //   this.scrolls,
+    //   (character, scroll) => {
+    //     character.stop();
+    //     console.log(scroll.name);
+    //   }
+    // );
   }
 
   initCamera() {
