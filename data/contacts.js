@@ -1,20 +1,18 @@
-import { IoMail, IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
-
 const contacts = [
   {
-    name: "bengsiswantoh@gmail.com",
+    type: "email",
+    name: "email",
     url: "mailto:bengsiswantoh@gmail.com",
-    icon: <IoMail />,
   },
   {
-    name: "bengsiswantoh",
+    type: "github",
+    name: "github",
     url: "https://github.com/bengsiswantoh",
-    icon: <IoLogoGithub />,
   },
   {
-    name: "bengsiswantoh",
+    type: "linkedin",
+    name: "linkedin",
     url: "https://www.linkedin.com/in/bengsiswantoh",
-    icon: <IoLogoLinkedin />,
   },
 ];
 
