@@ -4,18 +4,19 @@ import Player from "../classes/Player";
 import ScrollWithPillar from "../classes/ScrollWithPillar";
 import MillPropellerWithBuilding from "../classes/MillPropellerWithBuilding";
 
-const CLASSES = {
-  about: ScrollWithPillar,
-  experiences: ScrollWithPillar,
-};
-
 const scrollClick = (scroll) => {
   console.log(scroll.name);
+};
+
+const playerCollide = (player, other) => {
+  player.stop();
 };
 
 export default class MapScene extends Phaser.Scene {
   // objects;
   data;
+
+  houseLayer;
 
   player;
 
@@ -35,7 +36,6 @@ export default class MapScene extends Phaser.Scene {
     this.initInput();
 
     this.data = JSON.parse(this.game.data);
-    console.log(this.data);
 
     const music = this.sound.add("music-credit");
     // music.play();
@@ -52,24 +52,39 @@ export default class MapScene extends Phaser.Scene {
     const map = this.make.tilemap({ key: "map-main" });
 
     const tileFloor = map.addTilesetImage("TilesetFloor", "TilesetFloor");
+    const tilesetInteriorFloor = map.addTilesetImage(
+      "TilesetInteriorFloor",
+      "TilesetInteriorFloor"
+    );
     const tileHouse = map.addTilesetImage("TilesetHouse", "TilesetHouse");
+
     map.createLayer("floor", tileFloor);
-    map.createLayer("house", tileHouse);
+    map.createLayer("interiorFloor", tilesetInteriorFloor);
+    this.houseLayer = map.createLayer("house", tileHouse);
+    map.createLayer("houseUpper", tileHouse);
+
+    this.houseLayer.setCollisionByProperty({ collides: true });
+
+    const debugGraphics = this.add.graphics().setAlpha(0.7);
+    // this.houseLayer.renderDebug(debugGraphics, {
+    //   tileColor: null,
+    //   collidingTileColor: new Phaser.Display.Color(243, 234, 48, 255),
+    // });
 
     // this.objects = this.add.group();
 
     this.scrolls = this.add.group();
     map.getObjectLayer("scrolls").objects.forEach((item) => {
       const { x, y, name } = item;
-      const itemObject = new CLASSES[name](this, x, y);
+      const itemObject = new ScrollWithPillar(this, x, y);
       itemObject.name = name;
-      itemObject.setPointerUp(scrollClick);
+      // itemObject.setPointerUp(scrollClick);
       this.scrolls.add(itemObject);
       // this.objects.add(itemObject);
     });
 
     this.millPropellers = this.add.group();
-    map.getObjectLayer("mill-propellers").objects.forEach((item) => {
+    map.getObjectLayer("millPropellers").objects.forEach((item) => {
       const { x, y } = item;
       const itemObject = new MillPropellerWithBuilding(this, x, y);
       this.millPropellers.add(itemObject);
@@ -83,19 +98,25 @@ export default class MapScene extends Phaser.Scene {
   }
 
   initCollision() {
-    // this.physics.add.overlap(this.player, this.scrolls, (player, scroll) => {
-    //   player.stop();
-    //   console.log(scroll.name);
-    // });
+    const { width, height } = this.houseLayer;
+    this.physics.world.setBounds(0, 0, width, height);
+
+    this.physics.add.collider(this.player, this.houseLayer, playerCollide);
+
     this.physics.add.collider(this.player, this.scrolls, (player, scroll) => {
       player.stop();
       console.log(scroll.name);
     });
+
+    // this.physics.add.overlap(this.player, this.scrolls, (player, scroll) => {
+    //   player.stop();
+    //   console.log(scroll.name);
+    // });
   }
 
   initCamera() {
-    const { width, height } = this.game.scale;
-    this.cameras.main.setBounds(0, 0, width, height);
+    const { width, height } = this.houseLayer;
+    this.physics.world.setBounds(0, 0, width, height);
 
     this.cameras.main.setZoom(2);
 

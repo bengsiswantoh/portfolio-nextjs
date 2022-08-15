@@ -47,9 +47,7 @@ export default class Player extends Sprite {
       }
 
       if (distance <= 4) {
-        this.body.stop();
-        // this.body.reset(this.target.x, this.target.y);
-        this.state = "idle";
+        this.stop();
       }
     }
 
@@ -62,7 +60,9 @@ export default class Player extends Sprite {
   }
 
   stop() {
+    this.target.set(this.body.center);
     this.body.stop();
+    // this.body.reset(this.target.x, this.target.y);
     this.state = "idle";
   }
 }
