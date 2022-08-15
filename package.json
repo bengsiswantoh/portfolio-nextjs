@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "npm run build-game && next start",
+    "build": "npm run build-game && next build",
+    "start": "next start",
     "build-game": "npx webpack",
     "dev-game": "npx webpack serve --open --config webpack.dev.config.js"
   },

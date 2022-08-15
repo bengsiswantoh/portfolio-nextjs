@@ -11,9 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "public/game"),
   },
   plugins: [
-    new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ["bundle.js.LICENSE.txt"],
-    }),
+    new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         {
