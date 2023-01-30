@@ -1,21 +1,23 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { AnimatePresence } from "framer-motion";
+import { ChakraProvider } from '@chakra-ui/react';
+import { AnimatePresence } from 'framer-motion';
 
-import Layout from "../components/Layout";
-import Fonts from "../components/Fonts";
-import theme from "../theme";
+import '@/styles/globals.css';
 
-function MyApp({ Component, pageProps, router }) {
+import Layout from '../components/Layout';
+import Fonts from '../components/Fonts';
+import theme from '../theme';
+
+export default function App({ Component, pageProps, router }) {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
 
       <Layout router={router}>
         <AnimatePresence
-          exitBeforeEnter
+          mode="wait"
           initial={true}
           onExitComplete={() => {
-            if (typeof window !== "undefined") {
+            if (typeof window !== 'undefined') {
               window.scrollTo({ top: 0 });
             }
           }}
@@ -26,5 +28,3 @@ function MyApp({ Component, pageProps, router }) {
     </ChakraProvider>
   );
 }
-
-export default MyApp;

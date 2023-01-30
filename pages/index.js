@@ -1,29 +1,29 @@
-import NextLink from "next/link";
-import Image from "next/image";
+import NextLink from 'next/link';
+import Image from 'next/image';
 import {
   Container,
   Box,
   Heading,
   useColorModeValue,
   chakra,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import Section from "../components/Section";
-import Paragraph from "../components/Paragraph";
-import Article from "../components/Article";
-import ExperienceList from "../components/ExperienceList";
-import ContactList from "../components/ContactList";
-import ItemList from "../components/ItemList";
-import { BioSection, BioYear } from "../components/Bio";
+import Section from '../components/Section';
+import Paragraph from '../components/Paragraph';
+import Article from '../components/Article';
+import ExperienceList from '../components/ExperienceList';
+import ContactList from '../components/ContactList';
+import ItemList from '../components/ItemList';
+import { BioSection, BioYear } from '../components/Bio';
 
-import about from "../data/about";
-import contacts from "../data/contacts";
-import experiences from "../data/experiences";
-import personalProjects from "../data/personalProjects";
-import certifications from "../data/certifications";
+import about from '../data/about';
+import contacts from '../data/contacts';
+import experiences from '../data/experiences';
+import personalProjects from '../data/personalProjects';
+import certifications from '../data/certifications';
 
 const ProfileImage = chakra(Image, {
-  shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
+  shouldForwardProp: (prop) => ['width', 'height', 'src', 'alt'].includes(prop),
 });
 
 export default function Home() {
@@ -41,7 +41,7 @@ export default function Home() {
           Hello
         </Box> */}
 
-        <Box display={{ md: "flex" }}>
+        <Box display={{ md: 'flex' }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
               Bengsiswanto Hendrawan

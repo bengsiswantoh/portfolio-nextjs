@@ -1,4 +1,4 @@
-import NextLink from "next/link";
+import NextLink from 'next/link';
 import {
   Box,
   Container,
@@ -12,23 +12,23 @@ import {
   MenuItem,
   IconButton,
   useColorModeValue,
-} from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
-import Logo from "./Logo";
-import ThemeToggleButton from "./ThemeToggleButton";
+import Logo from './Logo';
+import ThemeToggleButton from './ThemeToggleButton';
 
-import sections from "../data/sections";
+import sections from '../data/sections';
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href;
-  const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
+  const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900');
   return (
     <NextLink href={href} passHref scroll={false}>
       <Link
         p={2}
-        bg={active ? "linkBgActive" : undefined}
-        color={active ? "linkColorActive" : inactiveColor}
+        bg={active ? 'linkBgActive' : undefined}
+        color={active ? 'linkColorActive' : inactiveColor}
       >
         {children}
       </Link>
@@ -44,8 +44,8 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("navLight", "navDark")}
-      css={{ backdropFilter: "blur(10px)" }}
+      bg={useColorModeValue('navLight', 'navDark')}
+      css={{ backdropFilter: 'blur(10px)' }}
       zIndex={2}
       {...props}
     >
@@ -58,15 +58,15 @@ const Navbar = (props) => {
         justify="space-between"
       >
         <Flex align="center" mr={5}>
-          <Heading as="h1" size="lg" letterSpacing={"tighter"}>
+          <Heading as="h1" size="lg" letterSpacing={'tighter'}>
             <Logo />
           </Heading>
         </Flex>
 
         <Stack
-          direction={{ base: "column", md: "row" }}
-          display={{ base: "none", md: "flex" }}
-          width={{ base: "full", md: "auto" }}
+          direction={{ base: 'column', md: 'row' }}
+          display={{ base: 'none', md: 'flex' }}
+          width={{ base: 'full', md: 'auto' }}
           alignItems="center"
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
@@ -83,7 +83,7 @@ const Navbar = (props) => {
         <Box flex={1} align="right">
           <ThemeToggleButton />
 
-          <Box ml={2} display={{ base: "inline-block", md: "none" }}>
+          <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy id="navbar-menu">
               <MenuButton
                 as={IconButton}
